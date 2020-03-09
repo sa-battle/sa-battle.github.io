@@ -5,5 +5,5 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 
 <http://www.example.com/hub> a ssn:System ;
-    ssn:hasSubSystem <http://sa-battle.github.com/iot.ttl> ;
-    rdfs:comment "radio hub"^^xsd:string .
+    ssn:hasSubSystem <https://sa-battle.github.com/iot.ttl> ;
+    rdfs:comment "Health Tech Hub"^^xsd:string .
