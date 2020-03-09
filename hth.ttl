@@ -1,0 +1,9 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+<http://www.example.com/hub> a ssn:System ;
+    ssn:hasSubSystem <http://sa-battle.github.com/iot.ttl> ;
+    rdfs:comment "radio hub"^^xsd:string .
