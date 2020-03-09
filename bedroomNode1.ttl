@@ -6,7 +6,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@base <https://sa-battle.github.io/> .
+@base <http://www.example.com/iot/> .
 
 <http://www.example.com/iot/> rdf:type owl:Ontology ;
                                owl:imports ssn: .
@@ -24,7 +24,7 @@
 
 
 ###  http://webprotege.stanford.edu/R8YdIdyhzca7rwzAuBUgJ8C
-<bedroomNode1> rdf:type owl:NamedIndividual ,
+<https://sa-battle.github.io/bedroomNode1> rdf:type owl:NamedIndividual ,
                                                                   sosa:Platform ;
                                                          sosa:hosts <http://webprotege.stanford.edu/R8fOeFIPhEDVJ7ot32TKIDH> ,
                                                                     <http://webprotege.stanford.edu/R8gQWzQVdutRedK6QvsPvGn> ,
