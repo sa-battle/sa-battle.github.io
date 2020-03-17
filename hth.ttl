@@ -6,6 +6,7 @@
 
 <http://www.example.com/hub> a ssn:System ;
     ssn:hasSubSystem <https://sa-battle.github.io/bedroomNode1>, <https://mibh.github.io/loungeNode> ;
+    dc:identifier "E148921E9CC54C2A8C6E0842539ACB3D" ;
     rdfs:comment "Health Tech Hub"^^xsd:string .
 
 <https://sa-battle.github.io/bedroomNode1> dc:identifier "00:11:7d:00:00:40:1f:91" .
