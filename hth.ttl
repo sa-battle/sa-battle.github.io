@@ -5,7 +5,10 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 
 <http://www.example.com/hub> a ssn:System ;
-    ssn:hasSubSystem <https://i2-okocha.github.io/bedroomNode1>, <https://mibh.github.io/loungeNode> ;
+    ssn:hasSubSystem 
+        <https://mibh.github.io/loungeNode>, 
+        <https://te2-odimegwu.github.io/kitchenNode1>, 
+        <https://jdcutlan.github.io/bedroomNode> ;
     dc:identifier "E148921E9CC54C2A8C6E0842539ACB3D" ;
     rdfs:comment "Health Tech Hub"^^xsd:string .
 
