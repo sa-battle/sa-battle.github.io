@@ -10,5 +10,5 @@
     rdfs:comment "Health Tech Hub"^^xsd:string .
 
 <https://mibh.github.io/loungeNode> dc:identifier "00:11:7d:00:00:40:24:f3" .
-<http://www.example.com/kitchen> dc:identifier "00:11:7d:00:00:40:23:59" .
-<https://i2-okocha.github.io/bedroomNode1> dc:identifier "00:11:7d:00:00:40:1f:91" .
+<https://e35-brown.github.io/kitchenNode1.ttl> dc:identifier "00:11:7d:00:00:40:23:59" .
+<https://jdcutlan.github.io/bedroomNode.ttl> dc:identifier "00:11:7d:00:00:40:1f:91" .
