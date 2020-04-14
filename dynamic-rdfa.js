@@ -198,20 +198,19 @@ function processRDFa(value, localDefaultVocabulary, localMappings, parentSubject
             results = store.getSubjects(currentPropertyValue, parentSubject, null);
         } else results = store.getObjects(parentSubject, currentPropertyValue, null);
 
-        var cloned = false;
         $(results).each(function (index, o) {
+            //console.log($(value).parent());
             var clone = $(value).clone();
-            clone.appendTo($(value).parent());
-            cloned = true;
+
+            // insert before this element to preserve ordering relative to non-query elements
+            clone.insertBefore($(value));
+
             var subject = parentSubject;
             if (o.termType == 'Literal') { // literal or datatype property
-                // if the element is 'required' then whitespace is eliminated
-                //if (o.value.trim() || !value.hasClass('required')) {
                 // use content attribute where defined otherwise add value to element content
                 if (clone.attr('content') === "") clone.attr('content', o.value);
                 else clone.text(o.value);
                 clone.addClass('instantiated');
-                //}
             }
             else if (o.termType == 'NamedNode') { // object property
                 if (currentObject!='typeof') clone.attr(currentObject, o.id);
