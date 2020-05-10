@@ -1,3 +1,4 @@
+@prefix : <http://www.example.com/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -5,7 +6,7 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @base <https://sa-battle.github.io/> .
 
-<http://www.example.com/hub> a ssn:System ;
+:hub a ssn:System ;
     ssn:hasSubSystem 
         <https://mibh.github.io/loungeNode>, 
         <https://te2-odimegwu.github.io/kitchenNode1>, 
