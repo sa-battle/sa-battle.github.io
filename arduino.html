@@ -5,20 +5,28 @@
     	var socket = io('http://127.0.0.1:8991');
 	var initialised = false;
 	var name = null;
-	const baud = 9600;
+	var baud = null;
 	var data = "";
+	var cmd;
+	var json = null;
+
     	socket.on('message', function(event) {
-		if (event.startsWith("list") || event.startsWith("open")) return;
-		var json = JSON.parse(event);
-		if (!initialised) {
+		try { json = JSON.parse(event); }
+		catch (e) {
+			console.log(event);
+			return;
+		}
+		/*if (!initialised) {
 			console.log(cmd='list');
 			socket.emit('command', cmd);
 			initialised = true;
 		}
-		else if (json.Ports) {
+		else */
+		if (json.Ports) {
 			console.log(event);
 			if (!json.Network) {
 				name = json.Ports[0].Name;
+				baud = json.Ports[0].Baud;
 				console.log(cmd=`open ${name} ${baud}`);
 				socket.emit('command', cmd);
 			}
@@ -32,6 +40,8 @@
 		}
 		else console.log(event);
 	});
+	console.log(cmd='list');
+	socket.emit('command', cmd);
     </script>
     </head>
     <body>
