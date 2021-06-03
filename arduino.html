@@ -19,8 +19,8 @@
 			socket.emit('command', `open ${name} ${baud}`);
 		}
 		else {
-			data += events.D ;
-			if (events.D=='\n') {
+			data += event.D ;
+			if (event.D=='\n') {
 				console.log(data);
 				data = "";
 			}
