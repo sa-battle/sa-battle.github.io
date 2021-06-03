@@ -13,7 +13,7 @@
 			socket.emit('command', 'list');
 			initialised = true;
 		}
-		else if ('Ports' in events) {
+		else if ('Ports' in event) {
 			console.log(event);
 			name = event.Ports[0].Name;
 			socket.emit('command', `open ${name} ${baud}`);
