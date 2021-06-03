@@ -8,25 +8,27 @@
 	const baud = 9600;
 	var data = "";
     	socket.on('message', function(event) {
+		var json = JSON.parse(event);
 		if (!initialised) {
 			socket.emit('command', 'list');
 			initialised = true;
 		}
-		else if (event.Ports) {
+		else if (json.Ports) {
 			console.log(event);
-			if (!event.Network) {
-				name = event.Ports[0].Name;
+			if (!json.Network) {
+				name = json.Ports[0].Name;
 				console.log(`open ${name} ${baud}`);
 				socket.emit('command', `open ${name} ${baud}`);
 			}
 		}
-		else {
-			data += event.D ;
-			if (event.D=='\n') {
+		else if (json.D) {
+			data += json.D ;
+			if (json.D=='\n') {
 				console.log(data);
 				data = "";
 			}
 		}
+		else console.log(event);
 	});
     </script>
     </head>
