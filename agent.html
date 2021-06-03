@@ -77,7 +77,8 @@
         });
 
 	    if (window['WebSocket']) {
-	        if (window.location.protocol === 'https:') {
+	        //if (window.location.protocol === 'https:') {
+	        if (false) {
 	            socket = io('https://127.0.0.1:8991')
 	        } else {
 	            socket = io('http://127.0.0.1:8991');
