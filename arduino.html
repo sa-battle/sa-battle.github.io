@@ -1,15 +1,11 @@
 <html>
     <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
     <script>
-        const socket = io('http://127.0.0.1:8991');
-        socket.on('connect', function() {
-            console.log(socket.id);
-            //socket.emit('command','list');
-            //socket.on('command', function(x) {
-            //    console.log(x);
-            //});
-        });
+let socket = new WebSocket('ws://127.0.0.1:8991');
+        
+socket.onopen = function(e) {
+  console.log("Connection established");
+};
     </script>
     </head>
     <body>
