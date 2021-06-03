@@ -8,13 +8,12 @@
 	const baud = 9600;
 	var data = "";
     	socket.on('message', function(event) {
+		console.log(event);
 		if (!initialised) {
-			console.log(event);
 			socket.emit('command', 'list');
 			initialised = true;
 		}
 		else if (event.Ports) {
-			console.log(event);
 			name = event.Ports[0].Name;
 			socket.emit('command', `open ${name} ${baud}`);
 		}
