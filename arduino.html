@@ -3,7 +3,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
     <script>
     	var socket = io('http://127.0.0.1:8991');
-	var initialised = false;
 	var name = null;
 	var baud = null;
 	var data = "";
@@ -16,19 +15,12 @@
 			console.log(event);
 			return;
 		}
-		/*if (!initialised) {
-			console.log(cmd='list');
-			socket.emit('command', cmd);
-			initialised = true;
-		}
-		else */
 		if (json.Ports) {
 			console.log(event);
 			if (!json.Network) {
 				name = json.Ports[0].Name;
 				baud = json.Ports[0].Baud;
-				console.log(cmd=`open ${name} ${baud}`);
-				socket.emit('command', cmd);
+				socket.emit('command', `open ${name} ${baud}`);
 			}
 		}
 		else if (json.D) {
@@ -40,8 +32,7 @@
 		}
 		else console.log(event);
 	});
-	console.log(cmd='list');
-	socket.emit('command', cmd);
+	socket.emit('command', 'list');
     </script>
     </head>
     <body>
