@@ -14,8 +14,11 @@
 			initialised = true;
 		}
 		else if (event.Ports) {
-			name = event.Ports[0].Name;
-			socket.emit('command', `open ${name} ${baud}`);
+			if (!event.Network) {
+				name = event.Ports[0].Name;
+				socket.emit('command', `open ${name} ${baud}`);
+				console.log(`open ${name} ${baud}`);
+			}
 		}
 		else {
 			data += event.D ;
