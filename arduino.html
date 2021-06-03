@@ -12,7 +12,6 @@
 			console.log(event);
 			socket.emit('command', 'list');
 			initialised = true;
-			break;
 		}
 		else if ('Ports' in events) {
 			console.log(event);
