@@ -2,9 +2,29 @@
     <head>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
     <script>
-    var socket = io('http://127.0.0.1:8991');
-    socket.on('message', function(event) {
-	  console.log(event);
+    	var socket = io('http://127.0.0.1:8991');
+	boolean initialised = false;
+	var name = null;
+	const baud = 9600;
+	var data = "";
+    	socket.on('message', function(event) {
+		console.log(event);
+		if (!initialised) {
+			socket.emit('command', 'list');
+			initialised = true;
+			break;
+		}
+		else if ('Ports' in events) {
+			name = event.Ports[0].Name;
+			socket.emit('command', `open ${name} ${baud}`);
+		}
+		else {
+			data += events.D ;
+			if (events.D=='\n') {
+				console.log(data);
+				data = "";
+			}
+		}
 	});
     </script>
     </head>
