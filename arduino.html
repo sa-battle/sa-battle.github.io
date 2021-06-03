@@ -11,15 +11,16 @@
 		if (event.startsWith("list") || event.startsWith("open")) return;
 		var json = JSON.parse(event);
 		if (!initialised) {
-			socket.emit('command', 'list');
+			console.log(cmd='list');
+			socket.emit('command', cmd);
 			initialised = true;
 		}
 		else if (json.Ports) {
 			console.log(event);
 			if (!json.Network) {
 				name = json.Ports[0].Name;
-				console.log(`open ${name} ${baud}`);
-				socket.emit('command', `open ${name} ${baud}`);
+				console.log(cmd=`open ${name} ${baud}`);
+				socket.emit('command', cmd);
 			}
 		}
 		else if (json.D) {
