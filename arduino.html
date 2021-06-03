@@ -27,6 +27,9 @@
 			data += json.D ;
 			if (json.D=='\n') {
 				console.log(data);
+				var e = document.getElementByID('output');
+				var text = document.createTextNode(data);
+				e.appendChild(text);
 				data = "";
 			}
 		}
@@ -36,6 +39,8 @@
     </script>
     </head>
     <body>
-    <h1>Arduino Agent</h1>
+    <h1>Arduino Serial Monitor</h1>
+	   <div id="output">
+	    </div>
     </body>
 </html>
