@@ -8,7 +8,7 @@
 	const baud = 9600;
 	var data = "";
     	socket.on('message', function(event) {
-		if (event.startswith("list") || event.startswith("open")) return;
+		if (event.startsWith("list") || event.startsWith("open")) return;
 		var json = JSON.parse(event);
 		if (!initialised) {
 			socket.emit('command', 'list');
