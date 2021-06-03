@@ -1,11 +1,11 @@
 <html>
     <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
     <script>
-let socket = new WebSocket('ws://localhost:8992');
-        
-socket.onopen = function(e) {
-  console.log("Connection established");
-};
+    var socket = io('http://127.0.0.1:8991');
+    socket.on('message', function(event) {
+	  console.log(event);
+	});
     </script>
     </head>
     <body>
