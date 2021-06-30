@@ -43,7 +43,7 @@
             console.log(event);
             return;
         }
-        if (json.Ports) {
+        if (json.Ports && !name) {
             console.log(event);
             if (!json.Network) {
                 name = json.Ports[0].Name;
