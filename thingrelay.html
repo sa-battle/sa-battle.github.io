@@ -50,7 +50,8 @@
 	    console.log(name);
             if (!json.Network && name!=json.Ports[0].Name) {
                 name = json.Ports[0].Name;
-                //baud = json.Ports[0].Baud;
+		if (json.Ports[0].Baud>0)
+                	baud = json.Ports[0].Baud;
                 socket.emit('command', `open ${name} ${baud}`);
             }
         }
