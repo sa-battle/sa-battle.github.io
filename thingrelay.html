@@ -11,7 +11,7 @@
 	<script>
     var socket = io('http://127.0.0.1:8991');
 	var name = null;
-	var baud = null;
+	var baud = 9600;
 	var data = "";
 	var cmd;
 	var json = null;
@@ -48,7 +48,7 @@
             console.log(event);
             if (!json.Network && !name) {
                 name = json.Ports[0].Name;
-                baud = json.Ports[0].Baud;
+                //baud = json.Ports[0].Baud;
                 socket.emit('command', `open ${name} ${baud}`);
             }
         }
