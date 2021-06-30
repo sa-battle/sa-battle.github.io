@@ -22,19 +22,19 @@
         args = {'api_key' : apikey };
         for (var i=0; i<data.length; i++) {
             args["field"+(i+1)] = parseFloat(data[i]);
-            req = new XMLHttpRequest();
-            req.open("POST", URL);  
-            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            //req.setRequestHeader ("Accept", "text/plain");
-	    console.log(JSON.stringify(args));
-            req.send(JSON.stringify(args));
-            req.onload = function() {
-                if (req.status != 200) { // analyze HTTP status of the response
+	}
+        req = new XMLHttpRequest();
+        req.open("POST", URL);  
+        req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        //req.setRequestHeader ("Accept", "text/plain");
+	console.log(JSON.stringify(args));
+        req.send(JSON.stringify(args));
+        req.onload = function() {
+        	if (req.status != 200) { // analyze HTTP status of the response
                     console.log(`Error ${req.status}: ${req.statusText}`);
                 } else { // show the result
                     console.log(`Done, got ${req.response.length} bytes`);
                 }
-            }
         }
     };
 
