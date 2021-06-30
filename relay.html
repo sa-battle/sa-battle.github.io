@@ -26,6 +26,7 @@
             req.open("POST", URL);  
             req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             //req.setRequestHeader ("Accept", "text/plain");
+	    console.log(JSON.stringify(args));
             req.send(JSON.stringify(args));
             req.onload = function() {
                 if (req.status != 200) { // analyze HTTP status of the response
