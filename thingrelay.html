@@ -46,8 +46,9 @@
         }
         if (json.Ports) {
             console.log(event);
-            if (!json.Network && !name) {
-		console.log(json.Network);
+	    console.log(json.Network);
+	    console.log(name);
+            if (!json.Network && name!=json.Ports[0].Name) {
                 name = json.Ports[0].Name;
                 //baud = json.Ports[0].Baud;
                 socket.emit('command', `open ${name} ${baud}`);
