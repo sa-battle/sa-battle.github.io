@@ -43,9 +43,9 @@
             console.log(event);
             return;
         }
-        if (json.Ports && !name) {
+        if (json.Ports) {
             console.log(event);
-            if (!json.Network) {
+            if (!json.Network && !name) {
                 name = json.Ports[0].Name;
                 baud = json.Ports[0].Baud;
                 socket.emit('command', `open ${name} ${baud}`);
