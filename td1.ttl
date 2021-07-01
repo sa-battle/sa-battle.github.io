@@ -126,6 +126,7 @@ schema:url rdf:type owl:AnnotationProperty .
 ###  https://www.w3.org/2019/wot/td#hasActionAffordance
 :hasActionAffordance rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf :hasInteractionAffordance ;
+                     rdfs:domain :Thing ;
                      rdfs:range :ActionAffordance ;
                      schema:rangeIncludes :ActionAffordance ;
                      rdfs:comment "All Action-based interaction affordance of the Thing."@en ;
@@ -145,6 +146,7 @@ schema:url rdf:type owl:AnnotationProperty .
 ###  https://www.w3.org/2019/wot/td#hasEventAffordance
 :hasEventAffordance rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf :hasInteractionAffordance ;
+                    rdfs:domain :Thing ;
                     rdfs:range :EventAffordance ;
                     schema:rangeIncludes :EventAffordance ;
                     rdfs:comment "All Event-based interaction affordance of the Thing."@en ;
@@ -190,6 +192,7 @@ schema:url rdf:type owl:AnnotationProperty .
 
 ###  https://www.w3.org/2019/wot/td#hasLink
 :hasLink rdf:type owl:ObjectProperty ;
+         rdfs:domain :Thing ;
          rdfs:range hctl:Link ;
          schema:rangeIncludes hctl:Link ;
          rdfs:comment "Provides Web links to arbitrary resources that relate to the specified Thing Description."@en ;
@@ -218,6 +221,7 @@ schema:url rdf:type owl:AnnotationProperty .
 ###  https://www.w3.org/2019/wot/td#hasPropertyAffordance
 :hasPropertyAffordance rdf:type owl:ObjectProperty ;
                        rdfs:subPropertyOf :hasInteractionAffordance ;
+                       rdfs:domain :Thing ;
                        rdfs:range :PropertyAffordance ;
                        schema:rangeIncludes :PropertyAffordance ;
                        rdfs:comment "All Property-based interaction affordance of the Thing."@en ;
