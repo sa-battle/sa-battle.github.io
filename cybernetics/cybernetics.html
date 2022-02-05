@@ -21,6 +21,7 @@
             }
             ul { overflow: hidden; }
             .margin { margin-left:10px; }
+            .hidden { visibility: hidden; }
         </style>
     </head>
     <body>
@@ -63,5 +64,17 @@
                 </ul>
             </section>
         </main>
+        <script>
+            hash = window.location.hash;
+            if (hash) {
+                hash = hash.substring(1);
+                sections = document.getElementsByTagName('section');
+                for (i=0; i<sections.length; i++) {
+                    if (sections[i].id!=hash) {
+                        sections[i].classList.add("hidden");
+                    }
+                }
+            }
+        </script>
     </body>
 </html>
