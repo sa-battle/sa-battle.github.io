@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bike Pump Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap">
+   
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+      // https://developers.google.com/chart/interactive/docs/quick_start
+    </script>
+
+    <!-- import the webpage's javascript file -->
+    <script src="script.js" defer></script>
+    <script>
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart(json) {
+        counts = {};
+        let features = json.features;
+        for (i=0; i<features.length; i++) {
+          let a = features[i].attributes;
+          if (counts.hasOwnProperty(a.MAINTAINED)) {
+            counts[a.MAINTAINED]++;
+          }
+          else {
+            // check for match of first N characters
+            const N = 18;
+            let b = false;
+            for (m in counts) {
+              if (m.slice(0,N)==a.MAINTAINED.slice(0,N)) {
+                counts[m]++;
+                b = true;
+              }
+            }
+            if (!b) counts[a.MAINTAINED] = 1;
+          }
+        }
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Maintained');
+        data.addColumn('number', 'Tool Stations');
+        rows = [];
+        for (m in counts) {
+          rows.push([m, counts[m]]);
+        }
+        data.addRows(rows);
+
+        // Set chart options
+        var options = {'title':'Maintainers', 'width':'80%', 'height':500};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+      function maintainers() {
+        let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+        fetch(url, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' },
+        })
+        .then (response => response.json())
+        .then(json => drawChart(json));
+      }
+
+    </script>
+  </head>  
+  <body>
+    <div class="grid-container">
+      <header>
+        <span class="heading"><a href="https://opendata.bristol.gov.uk/datasets/bcc::public-bike-pumps-1/explore">Bike Pump Finder</a></span>
+        <form class="search" action="index.html">
+          <input name="searchterm" placeholder="Search.." type="text" />
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </header>
+      <nav class="w3-container w3-margin">
+        <button onclick="getLocation(loadMap,'map.html')" class="w3-button w3-block w3-blue w3-margin-top">Find on Map</button>
+        <button onclick="location.href='type.html'" class="w3-button w3-block w3-blue w3-margin-top">Find by type</button>
+        <button onclick="location.href='chart.html'" class="w3-button w3-block w3-blue w3-margin-top">Maintainers</button>
+      </nav>
+      <main>
+        <!-- placeholder for the chart -->
+        <div id="chart_div"></div>     
+        <script>
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(maintainers);
+        </script>
+      </main>
+    </div>
+  </body>
+</html>
+
