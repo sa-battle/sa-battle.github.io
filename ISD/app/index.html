@@ -35,6 +35,10 @@
         let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&outFields=*&outSR=4326&f=json";
         if (string!=null && string!="") {
           let urlEncoded = encodeURIComponent(string);
+          // empty where
+          // out fields = *
+          // return geometry = true
+          // output spatial reference = 4326
           url = `https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=&text=${urlEncoded}&objectIds=&time=&timeRelation=esriTimeRelationOverlaps&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&distance=&units=esriSRUnit_Foot&relationParam=&outFields=*&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=4326&havingClause=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&returnExtentOnly=false&sqlFormat=none&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson`;
         }
         fetch(url, {
