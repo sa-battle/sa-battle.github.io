@@ -19,8 +19,10 @@
         for (i=0; i<features.length; i++) {
           tr = document.createElement('tr');
           let a = features[i].attributes;
+          let g = features[i].geometry;
           let td = document.createElement('td');
-          td.innerHTML = a.NAME;
+          let url = `map.html?lat=${g.y}&lon=${g.x}`;
+          td.innerHTML = `<a href="${url}">${a.NAME}</a>`;
           tr.appendChild(td);
           td = document.createElement('td');
           td.innerHTML = a["TYPE_"];
