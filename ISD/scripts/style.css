@@ -1,0 +1,36 @@
+/* CSS files add styling rules to your content */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 2em;
+  }
+  
+  h1 {
+    font-style: italic;
+    color: #373fff;
+  }
+  
+  .grid-container { 
+    display: grid; 
+    grid-template-areas:
+      'ph ph ph ph ph'
+      'ln cn cn cn cn'
+      'ln cn cn cn cn'
+      ;
+  }
+  
+  header {
+    grid-area: ph;
+    padding:20px 10px;
+    background-image: url('https://cdn.glitch.com/5225ec62-05a3-4fd8-bc04-0dbcc46d255d%2Fbike-wash.png?v=1618820584365');
+    background-attachment: fixed;
+  }
+  
+  nav { grid-area: ln }
+  
+  main { grid-area: cn }
+  
+  .heading { font-family: 'Roboto Mono', monospace; font-size:x-large; }
+  .search { float:right }
+
+ table { width:80% }

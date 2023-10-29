@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ten Green Bottles</title>
+    <!--script src="scripts/main.js"></script-->
+    <script data-main="scripts/main" src="scripts/require.js"></script>
+  </head>
+  <body>
+    <script>
+    
+    const numerals = ['no','one','two','three','four',
+    'five','six','seven','eight','nine','ten'];
+
+    for (bottles=10; bottles>0; bottles--) {
+      document.write(cap(greenBottles(bottles)+",<br/>"));
+      document.write(cap(greenBottles(bottles)+",<br/>"));
+      document.write("And if ", bottles==1?"that":"one" ," green bottle should accidentally fall,<br/>");
+      document.write("There'll be ", greenBottles(bottles-1), ".<br/>");
+      document.write("<br/>");
+    }
+    </script>
+  </body>
+</html>

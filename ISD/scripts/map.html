@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bike Pump Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/2.13.1/OpenLayers.js"></script>
+    <script src="script.js" defer></script>
+    <script>
+      function renderMarkers(json) {
+        let features = json.features;
+
+        //add markers
+        markers = new OpenLayers.Layer.Markers("Markers");
+        map.addLayer(markers);
+
+        for (i=0; i<features.length; i++) {
+          let g = features[i].geometry;
+          let lonLat = new OpenLayers.LonLat(g.x, g.y)
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+          let marker = new OpenLayers.Marker(lonLat);
+          markers.addMarker(marker);
+
+          // Add popup feature to the marker
+          let a = features[i].attributes;
+          let feature = new OpenLayers.Feature(markers, lonLat);
+          feature.closeBox = true;
+          feature.popupClass = OpenLayers.Class(OpenLayers.Popup.Anchored, { 'autoSize': true });
+          feature.data.popupContentHTML = `<ul><li>${a.NAME}</li><li>${a.TYPE_}</li></ul>`;
+          feature.data.overflow = "hidden";
+          marker.feature = feature;
+
+          marker.events.register("mousedown", feature, function(event) {
+            if (this.popup == null) {
+                this.popup = this.createPopup(this.closeBox);
+                map.addPopup(this.popup);
+                this.popup.show();
+            } else {
+                this.popup.toggle();
+            }
+            OpenLayers.Event.stop(event);
+          });
+        }
+      }
+
+      function addMarkers() {
+        let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+        fetch(url, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' },
+        })
+        .then (response => response.json())
+        .then(json => renderMarkers(json));
+      }
+
+      // get query string parameters lat, lon
+      const urlParams = new URLSearchParams(window.location.search);
+      const lat = urlParams.get('lat');
+      const lon = urlParams.get('lon');
+    </script>
+  </head>
+  <body>
+    <div class="grid-container">
+      <header>
+        <span class="heading"><a href="https://opendata.bristol.gov.uk/datasets/bcc::public-bike-pumps-1/explore">Bike Pump Finder</a></span>
+        <form class="search" action="index.html">
+          <input name="searchterm" placeholder="Search.." type="text" />
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </header>
+      <nav class="w3-container w3-margin">
+        <button onclick="getLocation(loadMap,'map.html')" class="w3-button w3-block w3-blue w3-margin-top">Find on Map</button>
+        <button onclick="location.href='type.html'" class="w3-button w3-block w3-blue w3-margin-top">Find by type</button>
+        <button onclick="location.href='chart.html'" class="w3-button w3-block w3-blue w3-margin-top">Maintainers</button>
+      </nav>
+      <main class="w3-margin">
+        <div id="map" style="height:600px; width:600px"></div>
+        <script>
+            var map = new OpenLayers.Map("map");
+            var maplayer = new OpenLayers.Layer.OSM("OpenStreetMap", 
+                [ // Official OSM tileset as forced HTTPS URLs
+                    'https://a.tile.openstreetmap.org/${z}/${x}/${y}.png',
+                    'https://b.tile.openstreetmap.org/${z}/${x}/${y}.png',
+                    'https://c.tile.openstreetmap.org/${z}/${x}/${y}.png'
+                ], null);
+            map.addLayer(maplayer);
+
+            // hide attribution to prevent it obscuring popups
+            document.getElementsByClassName('olControlAttribution')[0].style.visibility = 'hidden';
+            
+            //var centre = new OpenLayers.LonLat(-2.587910, 51.454514)
+            var centre = new OpenLayers.LonLat(lon, lat)
+            .transform(new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                map.getProjectionObject() // to Spherical Mercator Projection
+            ); 
+            var zoom=16; // appropriate for 500m radius
+            map.setCenter(centre, zoom);  
+            addMarkers();
+        </script>
+      </main>
+    </div>
+
+  </body>
+</html>

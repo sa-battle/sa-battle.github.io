@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bike Pump Finder</title>
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet"   
+     href="https://www.w3schools.com/w3css/4/w3.css">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />    
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+
+  </head>  
+  <body>
+    <div class="grid-container">
+      <header>
+        <span class="heading">Bike Pump Finder</span>
+        <form class="search" action="search.html">
+          <input name="searchterm" placeholder="Search.." type="text" />
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </header>
+      <nav>
+        <button onclick="location.href='map.html'" class="w3-button w3-block w3-blue">Find nearest</button>
+        <button onclick="location.href='index.html'" class="w3-button w3-block w3-blue">Find by type</button>
+      </nav>
+      <main>
+        <iframe src="https://opendata.bristol.gov.uk/explore/embed/dataset/public-bike-pumps/table/" width="800" height="600" frameborder="0"></iframe>
+      </main>
+    </div>
+
+  </body>
+</html>
+
