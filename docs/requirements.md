@@ -3,6 +3,8 @@
 ## User Needs
 
 ### User stories
+User stories capture the needs and wants of my user base.
+
 * As a cyclist I want to find the bike pumps and tools nearest to me, so I can repait a puncture if I get one.
 * As a cyclist I want to see all of the tool stations avaiable in my area, so I can plan my ride.
 * As A cyclist I want to be able to see which tool stations have pumps so I can top up the tyre pressure.
