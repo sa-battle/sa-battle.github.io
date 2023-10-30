@@ -10,7 +10,9 @@ User stories capture the needs and wants of my user base.
 * As A cyclist I want to be able to see which tool stations have pumps so I can top up the tyre pressure.
 
 ### Actors
-TODO: List and describe the actors/users for this product.
+Actos that appear in the following use-cases are as follows:
+
+* Cyclist - a bike user
 
 ### Use Cases
 TODO: Describe each use case (at least one per team member).
