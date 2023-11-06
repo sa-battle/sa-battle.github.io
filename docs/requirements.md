@@ -37,13 +37,10 @@ TODO: Your Use-Case diagram should include all use-cases.
 ## Software Requirements Specification
 ### Functional requirements
 
-**FR1.1**	The system should get permission to access user location via geolocation object.
-
-**FR1.2**	The system should query the database for tool station location from Open Data Bristol.
-
-**FR1.3**	The system should centre the map on the user location using the map object.
-
-**FR1.4**	The system should add markers for each tool station using the map object.
+**FR1.1**	The system should get permission to access user location via geolocation object.<br>
+**FR1.2**	The system should query the database for tool station location from Open Data Bristol.<br>
+**FR1.3**	The system should centre the map on the user location using the map object.<br>
+**FR1.4**	The system should add markers for each tool station using the map object.<br>
 
 
 
