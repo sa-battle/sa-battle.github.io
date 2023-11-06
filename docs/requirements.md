@@ -24,8 +24,7 @@ TODO: Describe each use case (at least one per team member).
 | **Description** | Show tool station on a map with the cyclist at the centre |
 | **Actors** | Cyclist |
 | **Assumptions** | None
-| **Steps** | <ol><li>select the map option</li>
-<li>Give permission to use my location</li><li>extract station coordinates from database</li><li>centre map on user location</li><li>add a marker for each tool station</li></ol> |
+| **Steps** | <ol><li>select the map option</li><li>Give permission to use my location</li><li>extract station coordinates from database</li><li>centre map on user location</li><li>add a marker for each tool station</li></ol> |
 | **Variations** |  |
 | **Non-functional** | TODO: OPTIONAL - List of non-functional requirements that the use case must meet. |
 | **Issues** |  |
