@@ -19,13 +19,13 @@ TODO: Describe each use case (at least one per team member).
     Give each use case a unique ID, e.g. UC1, UC2, ...
     Summarise these using the use-case template below.
 
-| TODO: USE-CASE ID e.g. UC1, UC2, ... | TODO: USE-CASE NAME | 
+| UC1 | Find tool stations nearest to me | 
 | -------------------------------------- | ------------------- |
-| **Description** | TODO: Goal to be achieved by use case and sources for requirement |
-| **Actors** | TODO: List of actors involved in use case |
-| **Assumptions** | TODO: Pre/post-conditions if any</td></tr>
-| **Steps** | TODO: Interactions between actors and system necessary to achieve goal |
-| **Variations** | TODO: OPTIONAL - Any variations in the steps of a use case |
+| **Description** | Show tool station on a map with the cyclist at the centre |
+| **Actors** | Cyclist |
+| **Assumptions** | None
+| **Steps** | <ul><li>select the map option</li><li>Give permission to use my location</li><li>extract station coordinates from database</li><<li>centre map on user location</li><li>add a marker for each tool station</li></ul> |
+| **Variations** |  |
 | **Non-functional** | TODO: OPTIONAL - List of non-functional requirements that the use case must meet. |
 | **Issues** | TODO: OPTIONAL - List of issues that remain to be resolved |
 
