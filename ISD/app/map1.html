@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/2.13.1/OpenLayers.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/8.1.0/Map.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/8.1.0/source/OSM.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/8.1.0/Tile.min.js"></script>
     <script src="script.js" defer></script>
     <script>
+
       function renderMarkers(json,centre,userloc) {
         let features = json.features;
 
@@ -91,21 +94,25 @@
       <main class="w3-margin">
         <div id="map" style="height:600px; width:600px"></div>
         <script>
-            var map = new OpenLayers.Map("map");
-            var maplayer = new OpenLayers.Layer.OSM("OpenStreetMap", 
-                [ // Official OSM tileset as forced HTTPS URLs
-                    'https://a.tile.openstreetmap.org/${z}/${x}/${y}.png',
-                    'https://b.tile.openstreetmap.org/${z}/${x}/${y}.png',
-                    'https://c.tile.openstreetmap.org/${z}/${x}/${y}.png'
-                ], null);
-            map.addLayer(maplayer);
+          const map = new Map({
+            layers: [
+              new TileLayer({
+                source: new OSM(),
+              }),
+            ],
+            target: 'map',
+            view: new View({
+              center: [0, 0],
+              zoom: 2,
+            }),
+          });
 
             // hide attribution to prevent it obscuring popups
             document.getElementsByClassName('olControlAttribution')[0].style.visibility = 'hidden';
             
             //var centre = new OpenLayers.LonLat(-2.587910, 51.454514)
-            var centre = new OpenLayers.LonLat(lon, lat)
-            .transform(new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            var centre = new ol.LonLat(lon, lat)
+            .transform(new ol.Projection("EPSG:4326"), // transform from WGS 1984
                 map.getProjectionObject() // to Spherical Mercator Projection
             ); 
             var zoom=16; // appropriate for 500m radius

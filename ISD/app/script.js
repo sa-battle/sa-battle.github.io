@@ -27,18 +27,19 @@ function show(btn, classifier,name) {
   function getLocation(fun,page) {
       if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(loc) {
-            fun(page,loc.coords.latitude, loc.coords.longitude);
+            fun(page,loc.coords.latitude, loc.coords.longitude,true);
           })
       }
       else {
           alert("Geolocation is not supported by this browser.");     // location defaults to central Bristol
-          fun(page,51.454514, -2.587910);
+          fun(page,51.454514, -2.587910,false);
       }
   }
   
   // Load map with lat, lon query string
-  function loadMap(page,lat,lon) {
-      location.href=page+"?lat="+lat+"&lon="+lon;
+  function loadMap(page,lat,lon,userloc) {
+      // userloc indicates if this is the true user location.
+      location.href=page+"?lat="+lat+"&lon="+lon+"&userloc="+userloc;
   }
   
   
