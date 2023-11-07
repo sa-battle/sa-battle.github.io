@@ -3,26 +3,31 @@
 ## User Needs
 
 ### User stories
-TODO: Write brief user stories to explain how various actors would interact with the system to accomplish a goal.
-    Express these in the form from agile development:- As a (role) I want (goal) so that (benefit).
+User stories capture the needs and wants of my user base.
+
+* As a cyclist I want to find the bike pumps and tools nearest to me, so I can repait a puncture if I get one.
+* As a cyclist I want to see all of the tool stations avaiable in my area, so I can plan my ride.
+* As A cyclist I want to be able to see which tool stations have pumps so I can top up the tyre pressure.
 
 ### Actors
-TODO: List and describe the actors/users for this product.
+Actos that appear in the following use-cases are as follows:
+
+* Cyclist - a bike user
 
 ### Use Cases
 TODO: Describe each use case (at least one per team member).
     Give each use case a unique ID, e.g. UC1, UC2, ...
     Summarise these using the use-case template below.
 
-| TODO: USE-CASE ID e.g. UC1, UC2, ... | TODO: USE-CASE NAME | 
+| UC1 | Find tool stations nearest to me | 
 | -------------------------------------- | ------------------- |
-| **Description** | TODO: Goal to be achieved by use case and sources for requirement |
-| **Actors** | TODO: List of actors involved in use case |
-| **Assumptions** | TODO: Pre/post-conditions if any</td></tr>
-| **Steps** | TODO: Interactions between actors and system necessary to achieve goal |
-| **Variations** | TODO: OPTIONAL - Any variations in the steps of a use case |
+| **Description** | Show tool station on a map with the cyclist at the centre |
+| **Actors** | Cyclist |
+| **Assumptions** | None
+| **Steps** | <ol><li>select the map option</li><li>Give permission to use my location</li><li>extract station coordinates from database</li><li>centre map on user location</li><li>add a marker for each tool station</li></ol> |
+| **Variations** |  |
 | **Non-functional** | TODO: OPTIONAL - List of non-functional requirements that the use case must meet. |
-| **Issues** | TODO: OPTIONAL - List of issues that remain to be resolved |
+| **Issues** |  |
 
 
 TODO: Your Use-Case diagram should include all use-cases.
@@ -31,10 +36,12 @@ TODO: Your Use-Case diagram should include all use-cases.
 
 ## Software Requirements Specification
 ### Functional requirements
-TODO: create a list of functional requirements. 
-    e.g. "The system shall ..."
-    Give each functional requirement a unique ID. e.g. FR1, FR2, ...
-    Indicate which UC the requirement comes from.
+
+**FR1.1**	The system should get permission to access user location via geolocation object.<br>
+**FR1.2**	The system should query the database for tool station location from Open Data Bristol.<br>
+**FR1.3**	The system should centre the map on the user location using the map object.<br>
+**FR1.4**	The system should add markers for each tool station using the map object.<br>
+
 
 
 ### Non-Functional Requirements
