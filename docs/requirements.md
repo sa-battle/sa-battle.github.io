@@ -45,6 +45,18 @@ TODO: Your Use-Case diagram should include all use-cases.
 
 
 ### Non-Functional Requirements
+
+**NFR1.1** The system should use a default of Bristol City Centre if no user location is available (Reliability).
+**NFR1.2** No security is required (Security).
+**NFR1.3** The source code should be available on GitHub (Maintainability).
+**NFR1.4** The app should work on a mobile phone sized screen (portability).
+**NFR1.5** The app should prespond to the user within 5 seconds (Performance Efficiency).
+**NFR1.6** The app should work on Chrome and Safari browsers (Compatibility).
+**NFR1.7** The markers should not be so large that they obscure more than 5% of the map (Usability).
+**NFR1.8** The data should be up-to-date; less than one year old (Functional Suitability).
+
+
+
 TODO: Consider one or more [quality attributes](https://en.wikipedia.org/wiki/ISO/IEC_9126) to suggest a small number of non-functional requirements.
 Give each non-functional requirement a unique ID. e.g. NFR1, NFR2, ...
 
