@@ -50,7 +50,7 @@ TODO: Your Use-Case diagram should include all use-cases.
 **NFR1.2** No security is required (Security).<br>
 **NFR1.3** The source code should be available on GitHub (Maintainability).<br>
 **NFR1.4** The app should work on a mobile phone sized screen (portability).<br>
-**NFR1.5** The app should prespond to the user within 5 seconds (Performance Efficiency).<br>
+**NFR1.5** The app should respond to the user within 5 seconds (Performance Efficiency).<br>
 **NFR1.6** The app should work on Chrome and Safari browsers (Compatibility).<br>
 **NFR1.7** The markers should not be so large that they obscure more than 5% of the map (Usability).<br>
 **NFR1.8** The data should be up-to-date; less than one year old (Functional Suitability).<br>
