@@ -9,52 +9,33 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap">
     
     <!-- import the webpage's javascript file -->
-    <script src="script.js" defer></script>
     <script>
-      function renderTable(json) {
-        let element = document.getElementById("results");
-        // clear out old results
-        element.textContent = ""; 
-        let features = json.features;
-        for (i=0; i<features.length; i++) {
-          tr = document.createElement('tr');
-          let a = features[i].attributes;
-          let g = features[i].geometry;
-          let td = document.createElement('td');
-          let url = `map.html?lat=${g.y}&lon=${g.x}`;
-          td.innerHTML = `<a href="${url}">${a.NAME}</a>`;
-          tr.appendChild(td);
-          td = document.createElement('td');
-          td.innerHTML = a["TYPE_"];
-          tr.appendChild(td);
-          element.appendChild(tr);
+       function outputTable(json) {
+            console.log(json);
+            var t = document.getElementById("results");
+            t.innerHTML = "";
+            let features = json.features;
+            for (i=0; i<features.length; i++) {
+                var row = document.createElement("tr");
+                t.appendChild(row);
+                var a = features[i].attributes;
+                var name = document.createElement("td");
+                var type = document.createElement("td");
+                name.innerHTML = a.NAME;
+                type.innerHTML = a.TYPE;
+                row.appendChild(name);
+                row.appendChild(type);
+            }
         }
-      }
 
-      function filter(where) {
-        let urlEncoded = encodeURIComponent(where);
-        let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where="+urlEncoded+"&outFields=*&outSR=4326&f=json";
-        fetch(url, {
-          method: 'GET',
-          headers: { 'Accept': 'application/json' },
-        })
-        .then (response => response.json())
-        .then(json => renderTable(json));
-      }
-
-      function select(btn,where) {
-        // black out the other buttons in the menu bar
-        var tabs = document.getElementsByClassName("w3-bar-item");
-        for (var i = 0; i < tabs.length; i++) {
-          tabs[i].classList.remove("w3-grey");
-          tabs[i].classList.add("w3-black");
+      function query(x) {
+          let y = encodeURIComponent(x);
+          let url = `https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=TYPE%20%3D%20'${y}'&outFields=NAME,MAINTAINED,TYPE&outSR=4326&f=json`;
+          fetch(url,{ method: "GET", headers: { Accept: "application/json"}})
+          .then(res=>res.json())
+          .then(outputTable);
         }
-        // colour this button
-        btn.classList.remove("w3-black");
-        btn.classList.add("w3-grey");
 
-        filter(where);
-      }
     </script>
   </head>  
   <body>
@@ -73,13 +54,14 @@
       </nav>
       <main>
         <div class="w3-bar">
-          <button class="w3-bar-item w3-button w3-ripple w3-grey" onclick="select(this,`TYPE='Bike Pump & Tool Station'`)"
+          <button class="w3-bar-item w3-button w3-ripple w3-black" onclick="query('bike pump & tool station')"
           >Bike Pump &amp; Tool Station</button>
-          <button class="w3-bar-item w3-button w3-ripple w3-black" onclick="select(this,`TYPE='Bike Tool Station'`)"
+          <button class="w3-bar-item w3-button w3-ripple w3-black" onclick="query('bike tool station')"
           >Bike Tool Station</button>
-          <button class="w3-bar-item w3-button w3-ripple w3-black" onclick="select(this,`TYPE like 'On street bike pump%'`)"
+          <button class="w3-bar-item w3-button w3-ripple w3-black" onclick="query('ON STREET BIKE PUMP')"
           >On street bike pump</button>
         </div>
+
         <table class="w3-table w3-bordered">
           <thead>
             <th>Name</th><th>Type</th>
@@ -87,9 +69,7 @@
           <tbody id="results">
           </tbody>
         </table>
-        <script>
-          filter(`TYPE='Bike Pump & Tool Station'`);
-        </script>
+        <script>query("ON STREET BIKE PUMP");</script>
       </main>
     </div>
   </body>
