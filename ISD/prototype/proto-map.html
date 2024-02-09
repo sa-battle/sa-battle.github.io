@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bike Pump Finder</title>
+    <!-- import the webpage's javascript file -->
+    <link rel="stylesheet" href="stylesheet.css"></link>
+  </head>  
+  <body>
+    <div class="grid-container">
+      <header>
+        Bike Pump Finder
+        <form id="search" action="proto-splash.html">
+          <input name="searchterm" placeholder="Search.." type="text" />
+          <button type="submit">search</button>
+        </form>
+      </header>
+      <nav>
+        <button onclick="location.href='proto-map.html'">Find nearest</button><br>
+        <button onclick="location.href='proto-type.html'">Find by type</button>
+      </nav>
+      <main>
+        <iframe src="https://arcg.is/1vDC1" width="800" height="600" frameborder="0"></iframe>        
+      </main>
+    </div>
+  </body>
+</html>
+

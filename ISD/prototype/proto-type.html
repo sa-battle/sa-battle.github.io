@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bike Pump Finder</title>
+    <!-- import the webpage's javascript file -->
+    <link rel="stylesheet" href="stylesheet.css"></link>
+    <script>
+    function show(id) {
+      // hide all the elements in the class
+      var x = document.getElementsByClassName('tab');
+      for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      // show the element identified
+      var panel = document.getElementById(id);
+      panel.style.display = "block";
+    
+      // refresh the iframe
+      //var iframe = panel.getElementsByTagName("iframe");
+      //iframe[0].src = iframe[0].src;
+    }
+    </script>
+  </head>  
+  <body>
+    <div class="grid-container">
+      <header>
+        Bike Pump Finder
+        <form id="search" action="proto-splash.html">
+          <input name="searchterm" placeholder="Search.." type="text" />
+          <button type="submit">search</button>
+        </form>
+      </header>
+      <nav>
+        <button onclick="location.href='proto-map.html'">Find nearest</button><br>
+        <button onclick="location.href='proto-type.html'">Find by type</button>
+      </nav>
+      <main>
+        <div>
+          <button onclick="show('Bike Pump & Tool Station')"
+          >Bike Pump &amp; Tool Station</button>
+          <button onclick="show('Bike Tool Station')"
+          >Bike Tool Station</button>
+          <button onclick="show('On street bike pump')"
+          >On street bike pump</button>
+        </div>
+        <div id="Bike Pump & Tool Station" class="tab">
+          <iframe src="https://arcg.is/j50iC0" width="800" height="600" frameborder="0"></iframe>
+        </div>
+        <div id="Bike Tool Station" class="tab" style="display:none">
+          <iframe src="https://arcg.is/1SqHa4" width="800" height="600" frameborder="0"></iframe>
+        </div>
+        <div id="On street bike pump" class="tab" style="display:none">
+          <iframe src="https://arcg.is/izyiT" width="800" height="600" frameborder="0"></iframe>        
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
+

@@ -8,50 +8,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap">
     
-    <!-- import the webpage's javascript file -->
-    <script src="script.js" defer></script>
     <script>
-      function renderTable(json) {
+      function outputTable(json) {
         let element = document.getElementById("results");
-        // clear out old results
-        element.textContent = ""; 
         let features = json.features;
         for (i=0; i<features.length; i++) {
           tr = document.createElement('tr');
           let a = features[i].attributes;
           let g = features[i].geometry;
           let td = document.createElement('td');
-          let url = `map.html?lat=${g.y}&lon=${g.x}`;
-          td.innerHTML = `<a href="${url}">${a.NAME}</a>`;
+          td.innerHTML = a.NAME;
           tr.appendChild(td);
           td = document.createElement('td');
-          td.innerHTML = a["TYPE_"];
+          td.innerHTML = a.TYPE;
           tr.appendChild(td);
           element.appendChild(tr);
         }
       }
 
-      function search(string) {
+      function query() {
         let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&outFields=*&outSR=4326&f=json";
-        if (string!=null && string!="") {
-          let urlEncoded = encodeURIComponent(string);
-          // empty where
-          // out fields = *
-          // return geometry = true
-          // output spatial reference = 4326
-          url = `https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=&text=${urlEncoded}&objectIds=&time=&timeRelation=esriTimeRelationOverlaps&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&distance=&units=esriSRUnit_Foot&relationParam=&outFields=*&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=4326&havingClause=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&returnExtentOnly=false&sqlFormat=none&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson`;
-        }
-        fetch(url, {
-          method: 'GET',
-          headers: { 'Accept': 'application/json' },
-        })
+        fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' }})
         .then (response => response.json())
-        .then(json => renderTable(json));
+        .then(outputTable);
       }
-
-      // get query string parameters searchterm
-      const urlParams = new URLSearchParams(window.location.search);
-      const searchterm = urlParams.get('searchterm');
     </script>
   </head>  
   <body>
@@ -76,7 +56,8 @@
           <tbody id="results">
           </tbody>
         </table>
-        <script>search(searchterm);</script>
+        <!--script>search(searchterm);</script-->
+        <script>query();</script>
       </main>
     </div>
   </body>

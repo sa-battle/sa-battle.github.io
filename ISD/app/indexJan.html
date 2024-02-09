@@ -9,11 +9,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap">
     
     <!-- import the webpage's javascript file -->
-    <script src="script.js" defer></script>
     <script>
       function outputTable(json) {
         let element = document.getElementById("results");
-        element.innerHTML = "";
         let features = json.features;
         for (i=0; i<features.length; i++) {
           tr = document.createElement('tr');
@@ -29,12 +27,14 @@
         }
       }
 
-      function filter(where) {
-        let urlEncoded = encodeURIComponent(where);
-        let url = `https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=TYPE%20%3D%20'${urlEncoded}'&outFields=*&outSR=4326&f=json`;
-        fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } })
+      function query() {
+        let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+        fetch(url, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' },
+        })
         .then (response => response.json())
-        .then(outputTable);
+        .then(json => outputTable(json));
       }
     </script>
   </head>  
@@ -48,19 +48,10 @@
         </form>
       </header>
       <nav class="w3-container w3-margin">
-        <button onclick="getLocation(loadMap,'map.html')" class="w3-button w3-block w3-blue w3-margin-top">Find on Map</button>
+        <button onclick="location.href='map.html'" class="w3-button w3-block w3-blue w3-margin-top">Find on Map</button>
         <button onclick="location.href='type.html'" class="w3-button w3-block w3-blue w3-margin-top">Find by type</button>
-        <button onclick="location.href='chart.html'" class="w3-button w3-block w3-blue w3-margin-top">Maintainers</button>
       </nav>
       <main>
-        <div class="w3-bar">
-          <button class="w3-bar-item w3-button w3-ripple w3-green" onclick="filter('Bike Pump & Tool Station')"
-          >Bike Pump &amp; Tool Station</button>
-          <button class="w3-bar-item w3-button w3-ripple w3-green" onclick="filter('Bike Tool Station')"
-          >Bike Tool Station</button>
-          <button class="w3-bar-item w3-button w3-ripple w3-green" onclick="filter('On street bike pump')"
-          >On street bike pump</button>
-        </div>
         <table class="w3-table w3-bordered">
           <thead>
             <th>Name</th><th>Type</th>
@@ -68,9 +59,7 @@
           <tbody id="results">
           </tbody>
         </table>
-        <script>
-          filter('Bike Pump & Tool Station');
-        </script>
+        <script>query();</script>
       </main>
     </div>
   </body>
