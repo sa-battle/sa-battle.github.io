@@ -1,6 +1,12 @@
   
   // Request user geolocation and callback with lat, lon
   function getLocation(page) {
+    navigator.geolocation.getCurrentPosition(
+      location=>console.log(location),
+      location=>error.log(location)
+    ); 
+    
+
       if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             function(loc) { // permission granted

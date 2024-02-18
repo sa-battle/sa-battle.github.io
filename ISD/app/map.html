@@ -29,8 +29,10 @@
             let marker = new mapboxgl.Marker().setLngLat([g.x, g.y]).addTo(map);
 
             // create the popup
+            //let popup = new mapboxgl.Popup({ offset: 25 }).setText(a.NAME);
             let popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`<a href="http://example.com">${a.NAME}</a>`);
             marker.setPopup(popup);
+          
           }
         }
 
