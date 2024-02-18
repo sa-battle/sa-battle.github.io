@@ -2,6 +2,13 @@
 <html lang="en">
   <head>
     <title>Bike Pump Finder</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+    <style>
+        #map { position: absolute; top: 1; height: 60%; width: 60%; }
+    </style>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -10,68 +17,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/2.13.1/OpenLayers.js"></script>
     <script src="script.js" defer></script>
     <script>
-      function renderMarkers(json,centre,userloc) {
-        let features = json.features;
+        const MY_TOKEN = "pk.eyJ1Ijoic3RldmViYXR0bGUiLCJhIjoiY2xzcWQxZzBiMHExZTJxbmpnN2hqbHMwZyJ9.hIauJCmUD0AzB4Uwru49QQ";
 
-        //add markers
-        markers = new OpenLayers.Layer.Markers("Markers");
-        map.addLayer(markers);
+        function addMarkers(json) {
+          let element = document.getElementById("results");
+          let features = json.features;
+          for (i=0; i<features.length; i++) {
+            tr = document.createElement('tr');
+            let a = features[i].attributes;
+            let g = features[i].geometry;
 
-        for (i=0; i<features.length; i++) {
-          let g = features[i].geometry;
-          let lonLat = new OpenLayers.LonLat(g.x, g.y)
-          .transform(
-            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-            map.getProjectionObject() // to Spherical Mercator Projection
-          );
-          let marker = new OpenLayers.Marker(lonLat);
-          markers.addMarker(marker);
+            // Create marker and add it to the map.
+            let marker = new mapboxgl.Marker().setLngLat([g.x, g.y]).addTo(map);
 
-          // Add popup feature to the marker
-          let a = features[i].attributes;
-          let feature = new OpenLayers.Feature(markers, lonLat);
-          feature.closeBox = true;
-          feature.popupClass = OpenLayers.Class(OpenLayers.Popup.Anchored, { 'autoSize': true });
-          feature.data.popupContentHTML = `<ul><li>${a.NAME}</li><li>${a.TYPE_}</li></ul>`;
-          feature.data.overflow = "hidden";
-          marker.feature = feature;
-
-          marker.events.register("mousedown", feature, function(event) {
-            if (this.popup == null) {
-                this.popup = this.createPopup(this.closeBox);
-                map.addPopup(this.popup);
-                this.popup.show();
-            } else {
-                this.popup.toggle();
-            }
-            OpenLayers.Event.stop(event);
-          });
-
-          // add radial lines from the userloc to the tool station
-          if (userloc) {
-            let points = [centre, lonLat];
-            let line_feat1 = new OpenLayers.Feature({
-              geometry: new OpenLayers.geom.LineString(points), name: "line"
-            });
+            // create the popup
+            let popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`<a href="http://example.com">${a.NAME}</a>`);
+            marker.setPopup(popup);
           }
         }
-      }
 
-      function addMarkers(centre,userloc) {
-        let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&outFields=*&outSR=4326&f=json";
-        fetch(url, {
-          method: 'GET',
-          headers: { 'Accept': 'application/json' },
-        })
-        .then (response => response.json())
-        .then(json => renderMarkers(json,centre,userloc));
-      }
-
-      // get query string parameters lat, lon
-      const urlParams = new URLSearchParams(window.location.search);
-      const lat = urlParams.get('lat');
-      const lon = urlParams.get('lon');
-      const userloc = urlParams.get('userloc');
+        function query() {
+          let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+          fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' }})
+            .then (response => response.json())
+            .then(addMarkers);
+        }
     </script>
   </head>
   <body>
@@ -84,33 +54,25 @@
         </form>
       </header>
       <nav class="w3-container w3-margin">
-        <button onclick="getLocation(loadMap,'map.html')" class="w3-button w3-block w3-blue w3-margin-top">Find on Map</button>
+        <button onclick="getLocation('map.html')" class="w3-button w3-block w3-blue w3-margin-top">Find on Map</button>
         <button onclick="location.href='type.html'" class="w3-button w3-block w3-blue w3-margin-top">Find by type</button>
-        <button onclick="location.href='chart.html'" class="w3-button w3-block w3-blue w3-margin-top">Maintainers</button>
       </nav>
       <main class="w3-margin">
-        <div id="map" style="height:600px; width:600px"></div>
+        <div id="map"></div>
         <script>
-            var map = new OpenLayers.Map("map");
-            var maplayer = new OpenLayers.Layer.OSM("OpenStreetMap", 
-                [ // Official OSM tileset as forced HTTPS URLs
-                    'https://a.tile.openstreetmap.org/${z}/${x}/${y}.png',
-                    'https://b.tile.openstreetmap.org/${z}/${x}/${y}.png',
-                    'https://c.tile.openstreetmap.org/${z}/${x}/${y}.png'
-                ], null);
-            map.addLayer(maplayer);
+          // get query string parameters lat, lon
+          var urlParams = new URLSearchParams(location.search);
+          var lat = urlParams.get('lat');
+          var lon = urlParams.get('lon');
 
-            // hide attribution to prevent it obscuring popups
-            document.getElementsByClassName('olControlAttribution')[0].style.visibility = 'hidden';
-            
-            //var centre = new OpenLayers.LonLat(-2.587910, 51.454514)
-            var centre = new OpenLayers.LonLat(lon, lat)
-            .transform(new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-                map.getProjectionObject() // to Spherical Mercator Projection
-            ); 
-            var zoom=16; // appropriate for 500m radius
-            map.setCenter(centre, zoom);  
-            addMarkers(centre,userloc);
+          mapboxgl.accessToken = MY_TOKEN;
+          var map = new mapboxgl.Map({
+            container: 'map', // container ID
+            center: [lon,lat], // -2.587910, 51.454514], // centre position [lon, lat]
+            zoom: 12 // starting zoom
+          });
+
+          query();
         </script>
       </main>
     </div>

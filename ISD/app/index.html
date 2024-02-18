@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap">
-    
+    <script src="script.js"> // mapping functions </script>
     <script>
       function outputTable(json) {
         let element = document.getElementById("results");
@@ -44,9 +44,8 @@
         </form>
       </header>
       <nav class="w3-container w3-margin">
-        <button onclick="getLocation(loadMap,'map.html')" class="w3-button w3-block w3-blue w3-margin-top">Find on Map</button>
+        <button onclick="getLocation('map.html')" class="w3-button w3-block w3-blue w3-margin-top">Find on Map</button>
         <button onclick="location.href='type.html'" class="w3-button w3-block w3-blue w3-margin-top">Find by type</button>
-        <button onclick="location.href='chart.html'" class="w3-button w3-block w3-blue w3-margin-top">Maintainers</button>
       </nav>
       <main>
         <table class="w3-table w3-bordered">
