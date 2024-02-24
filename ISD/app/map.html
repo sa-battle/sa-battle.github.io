@@ -75,7 +75,9 @@
             });
 
       // Create marker and add it to the map.
-      var marker = new mapboxgl.Marker().setLngLat([lon, lat]).addTo(map);
+      map.on('load', () => { 
+        var marker = new mapboxgl.Marker().setLngLat([lon, lat]).addTo(map);
+      });
     </script>
   </body>
 </html>
