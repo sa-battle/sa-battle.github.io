@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bike Pump Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap">
+    <script src="script.js"> // mapping functions </script>
+    <script language="javascript" src="https://www.nearby.org.uk/tests/geotools2.js"></script>
+    <script>
+      function outputTable(json) {
+        let element = document.getElementById("results");
+        let features = json.features;
+        for (i=0; i<features.length; i++) {
+          tr = document.createElement('tr');
+          let a = features[i].attributes;
+          let g = features[i].geometry;
+          let td = document.createElement('td');
+          td.innerHTML = a.NAME;
+          tr.appendChild(td);
+
+          td = document.createElement('td');
+          td.innerHTML = a.TYPE;
+          tr.appendChild(td);
+          element.appendChild(tr);
+
+          td = document.createElement('td');
+          let d = Math.round(Math.sqrt((g.x - osgb.eastings) ** 2 
+                                     + (g.y - osgb.northings)** 2));
+          td.innerHTML = `${d} metres`  ;
+          tr.appendChild(td);
+          element.appendChild(tr);
+        }
+      }
+
+      function query(eastings,northings) {
+        let url = `https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&text=&objectIds=&time=&timeRelation=esriTimeRelationOverlaps&geometry=${eastings}%2C${northings}&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&distance=1&units=esriSRUnit_Kilometer&relationParam=&outFields=*&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&havingClause=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&returnExtentOnly=false&sqlFormat=none&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson`;
+        fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' }})
+        .then (response => response.json())
+        .then(outputTable);
+      }
+
+      // convert 
+      // see: https://webapps.bgs.ac.uk/data/webservices/convertForm.cfm#decimalLatLng
+      // see: http://www.movable-type.co.uk/scripts/latlong-os-gridref.html
+
+    </script>
+  </head>  
+  <body>
+    <div class="grid-container">
+      <header>
+        <span class="heading"><a href="index.html">Bike Pump Finder</a></span>
+        <form class="search" action="search.html">
+          <input name="searchterm" placeholder="Search.." type="text">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </header>
+      <nav class="w3-container w3-margin">
+        <button onclick="getLocation('map.html')" class="w3-button w3-block w3-blue w3-margin-top">Find on Map</button>
+        <button onclick="location.href='type.html'" class="w3-button w3-block w3-blue w3-margin-top">Find by type</button>
+      </nav>
+      <main>
+        <table class="w3-table w3-bordered">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th>Distance</th></tr>
+          </thead>
+          <tbody id="results">
+          </tbody>
+        </table>
+        <script>
+          // get query string parameters lat, lon
+          var urlParams = new URLSearchParams(location.search);
+          var lat = urlParams.get('lat');
+          var lon = urlParams.get('lon');
+
+          var wgs84 = new GT_WGS84();
+          wgs84.setDegrees(lat, lon);
+          var osgb = wgs84.getOSGB();
+          query(osgb.eastings,osgb.northings);
+        </script>
+      </main>
+    </div>
+  </body>
+</html>
+
