@@ -1,4 +1,20 @@
-  
+function outputTableAttributes(json) {
+  let element = document.getElementById("results");
+  let features = json.features;
+  for (i=0; i<features.length; i++) {
+    tr = document.createElement('tr');
+    let a = features[i].attributes;
+    let g = features[i].geometry;
+    let td = document.createElement('td');
+    td.innerHTML = a.NAME;
+    tr.appendChild(td);
+    td = document.createElement('td');
+    td.innerHTML = a.TYPE;
+    tr.appendChild(td);
+    element.appendChild(tr);
+  }
+}
+
   // Request user geolocation and callback with lat, lon
   function getLocation(page) {
     navigator.geolocation.getCurrentPosition(

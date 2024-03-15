@@ -19,28 +19,26 @@
     <script>
       const MY_TOKEN = "pk.eyJ1Ijoic3RldmViYXR0bGUiLCJhIjoiY2xzcWQxZzBiMHExZTJxbmpnN2hqbHMwZyJ9.hIauJCmUD0AzB4Uwru49QQ";
 
-      function outputTable(json) {
-        let element = document.getElementById("results");
+      function addMarkers(json) {
         let features = json.features;
         for (i=0; i<features.length; i++) {
-          tr = document.createElement('tr');
           let a = features[i].attributes;
           let g = features[i].geometry;
-          let td = document.createElement('td');
-          td.innerHTML = a.NAME;
-          tr.appendChild(td);
-          td = document.createElement('td');
-          td.innerHTML = a.TYPE;
-          tr.appendChild(td);
-          element.appendChild(tr);
+
+          // Create marker and add it to the map.
+          let marker = new mapboxgl.Marker().setLngLat([g.x, g.y]).addTo(map);
+
+          // create the popup
+          let popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`<a href="http://example.com">${a.NAME}</a>`);
+          marker.setPopup(popup);
         }
       }
 
       function query() {
         let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&outFields=*&outSR=4326&f=json";
         fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' }})
-        .then (response => response.json())
-        .then(outputTable);
+          .then (response => response.json())
+          .then(addMarkers);
       }
     </script>
   </head>  
@@ -69,15 +67,12 @@
 
       mapboxgl.accessToken = MY_TOKEN;
       var map = new mapboxgl.Map({
-                container: 'map', // container ID
-                center: [lon, lat], // longitude, latitude
-                zoom: 14 // zoom level
-            });
-
-      // Create marker and add it to the map.
-      map.on('load', () => { 
-        var marker = new mapboxgl.Marker().setLngLat([lon, lat]).addTo(map);
+        container: 'map', // container ID
+        center: [lon,lat], // longitude, latitude
+        zoom: 12 // zoom level
       });
+
+      query();
     </script>
   </body>
 </html>

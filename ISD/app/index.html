@@ -30,7 +30,7 @@
         let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&outFields=*&outSR=4326&f=json";
         fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' }})
         .then (response => response.json())
-        .then(outputTable);
+        .then(outputTableAttributes);
       }
     </script>
   </head>  
