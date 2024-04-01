@@ -9,24 +9,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap">
     <script src="script.js"> // mapping functions </script>    
     <script>
-      function outputTable(json) {
-        let element = document.getElementById("results");
-        element.innerHTML = "";
-        let features = json.features;
-        for (i=0; i<features.length; i++) {
-          tr = document.createElement('tr');
-          let a = features[i].attributes;
-          let g = features[i].geometry;
-          let td = document.createElement('td');
-          td.innerHTML = a.NAME;
-          tr.appendChild(td);
-          td = document.createElement('td');
-          td.innerHTML = a.TYPE;
-          tr.appendChild(td);
-          element.appendChild(tr);
-        }
-      }
-
       function filter(x) {
         let urlEncoded = encodeURIComponent(x);
         let url = `https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=TYPE%20%3D%20'${urlEncoded}'&outFields=*&outSR=4326&f=json`;

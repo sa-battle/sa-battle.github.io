@@ -1,0 +1,27 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test Suite</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.20.1.css">
+  <script src="../app/script.js"></script>
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.20.1.js"></script>
+
+  <table>
+    <tbody id="results"></tbody>
+  </table>
+  <script>
+      QUnit.test('output table length', function(assert) {
+        outputTable({ features: [ { 
+          attributes:{ NAME: "test-name", TYPE: "test-type" }, 
+          geometry:{} } 
+        ] });
+        let element = document.getElementById("results");
+        assert.equal(element.children.length, 1);
+      });
+  </script>
+</body>
+</html>

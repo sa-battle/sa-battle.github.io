@@ -8,25 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&family=Roboto:wght@500&display=swap">
     
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
     <script>
-      function outputTable(json) {
-        let element = document.getElementById("results");
-        let features = json.features;
-        for (i=0; i<features.length; i++) {
-          tr = document.createElement('tr');
-          let a = features[i].attributes;
-          let g = features[i].geometry;
-          let td = document.createElement('td');
-          td.innerHTML = a.NAME;
-          tr.appendChild(td);
-          td = document.createElement('td');
-          td.innerHTML = a.TYPE;
-          tr.appendChild(td);
-          element.appendChild(tr);
-        }
-      }
-
       function search(string) {
         let urlEncoded = encodeURIComponent(string);
         url = `https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=&text=${urlEncoded}&objectIds=&time=&timeRelation=esriTimeRelationOverlaps&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&distance=&units=esriSRUnit_Foot&relationParam=&outFields=*&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=4326&havingClause=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&returnExtentOnly=false&sqlFormat=none&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson`;
@@ -34,7 +17,6 @@
         .then (response => response.json())
         .then(outputTable);
       }
-
     </script>
   </head>  
   <body>

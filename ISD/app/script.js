@@ -1,5 +1,8 @@
-function outputTableAttributes(json) {
+const MY_TOKEN = "pk.eyJ1Ijoic3RldmViYXR0bGUiLCJhIjoiY2xzcWQxZzBiMHExZTJxbmpnN2hqbHMwZyJ9.hIauJCmUD0AzB4Uwru49QQ";
+
+function outputTable(json) {
   let element = document.getElementById("results");
+  element.innerHTML = "";
   let features = json.features;
   for (i=0; i<features.length; i++) {
     tr = document.createElement('tr');
@@ -15,31 +18,25 @@ function outputTableAttributes(json) {
   }
 }
 
-  // Request user geolocation and callback with lat, lon
-  function getLocation(page) {
-    navigator.geolocation.getCurrentPosition(
-      location=>console.log(location),
-      location=>error.log(location)
-    ); 
-    
-
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            function(loc) { // permission granted
-              location.href=`${page}?lat=${loc.coords.latitude}&lon=${loc.coords.longitude}`;
-            },
-            function() { // permission denied
-              // location defaults to central Bristol
-              location.href=`${page}?lat=51.454514&lon=-2.587910`;              
-            }
-          )
-      }
-      else { // unsupported feature
-          alert("Geolocation is not supported by this browser.");
+// Request user geolocation and callback with lat, lon
+function getLocation(page,win = window, nav = navigator) {
+  if (nav.geolocation) {
+      nav.geolocation.getCurrentPosition(
+        function(loc) { // permission granted
+          win.location.href=`${page}?lat=${loc.coords.latitude}&lon=${loc.coords.longitude}`;
+        },
+        function() { // permission denied
           // location defaults to central Bristol
-          location.href=`${page}?lat=51.454514&lon=-2.587910`;
-      }
+          win.location.href=`${page}?lat=51.454514&lon=-2.587910`;              
+        }
+      )
   }
+  else { // unsupported feature
+      win.alert("Geolocation is not supported by this browser.");
+      // location defaults to central Bristol
+      win.location.href=`${page}?lat=51.454514&lon=-2.587910`;
+  }
+}
 
   
   

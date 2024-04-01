@@ -18,16 +18,54 @@
     </tbody>
   </table>
   <script>
-    QUnit.module('script', function() {
-      QUnit.test('output table attributes', function(assert) {
-        outputTableAttributes({ features: [ { 
-          properties:{ NAME: "test-name", TYPE: "test-type" }, 
-          geometry:{} } 
-        ] });
+    QUnit.module('script', function(hooks) {
 
+      hooks.before( function() {
+        outputTable({ features: [ { 
+          attributes:{ NAME: "test-name", TYPE: "test-type" }, 
+          geometry:{} } 
+        ]});
+      });
+
+      QUnit.test('outputTable attributes', function(assert) {
+        let element = document.getElementById("results");
+        let row = element.children.item(0); // why 1 not 0 - becasue we added the row twice
+        assert.equal(row.children.item(0).innerHTML, "test-name");
+        assert.equal(row.children.item(1).innerHTML, "test-type");
+      });
+
+      QUnit.test('outputTable length', function(assert) {
         let element = document.getElementById("results");
         assert.equal(element.children.length, 1);
       });
+
+      QUnit.test('Map token defined', function(assert) {
+        assert.ok(MY_TOKEN);
+      });      
+
+      QUnit.test('getLocation no nav.geolocation', function(assert) {
+        let page = "TEST";
+        let win = { alert:()=>{}, location:{} };
+        let nav = { geolocation:null };
+        getLocation(page,win,nav);
+        assert.equal(win.location.href,`${page}?lat=51.454514&lon=-2.587910`)
+      });
+
+      QUnit.test('getLocation with nav.geolocation denied', function(assert) {
+        let page = "TEST";
+        let win = { alert:()=>{}, location:{} };
+        let nav = { geolocation:{ getCurrentPosition:(grant,deny)=>{ deny() }}};
+        getLocation(page,win,nav);
+        assert.equal(win.location.href,`${page}?lat=51.454514&lon=-2.587910`)
+      });
+
+      QUnit.test('getLocation with nav.geolocation granted', function(assert) {
+        let page = "TEST";
+        let win = { alert:()=>{}, location:{} };
+        let nav = { geolocation:{ getCurrentPosition:(grant,deny)=>{ grant( { coords:{ latitude:1, longitude:2 }} ) }}};
+        getLocation(page,win,nav);
+        assert.equal(win.location.href,`${page}?lat=1&lon=2`)
+      });  
     });
   </script>
 </body>
