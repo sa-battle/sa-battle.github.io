@@ -1,0 +1,10 @@
+{
+    "@context": {
+        "eg": "http://example.com/",
+        "schema": "https://schema.org/",
+        "@vocab": "https://example.com/FHM#"
+    },
+    "@type": "schema:Person",
+    "@id": "eg:father-foo",
+    "name": "foo"
+}
