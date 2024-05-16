@@ -1,7 +1,7 @@
 {
     "@context": {
         "schema": "https://schema.org/",
-        "@vocab": "https://example.com/FHM#"
+        "@vocab": "https://example.com/FMH#"
     },
     "@type": "schema:Person",
     "@id": "https://sa-battle.github.io/seb/mother.jsonld",
