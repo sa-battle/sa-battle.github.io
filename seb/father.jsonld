@@ -1,10 +1,9 @@
 {
     "@context": {
-        "eg": "http://example.com/",
         "schema": "https://schema.org/",
         "@vocab": "https://example.com/FHM#"
     },
     "@type": "schema:Person",
-    "@id": "eg:father-foo",
+    "@id": "https://sa-battle.github.io/father.jsonld",
     "name": "foo"
 }
