@@ -1,12 +1,11 @@
 {
     "@context": {
-        "eg": "http://example.com/",
         "schema": "https://schema.org/",
         "@vocab": "https://example.com/FHM#"
     },
     "@type": "schema:Person",
-    "@id": "eg:child-baz",
-    "father": "eg:father-foo",
-    "mother": "eg:mother-bar",
+    "@id": "https://sa-battle.github.io/child.jsonld",
+    "father": "https://sa-battle.github.io/mother.jsonld",
+    "mother": "https://sa-battle.github.io/father.jsonld",
     "name": "baz"
 }
