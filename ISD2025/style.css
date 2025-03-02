@@ -10,11 +10,3 @@ nav {grid-area:n}
 main {grid-area:m}
 
 #search { float:right}
-
-#first { display:none }
-#second { display:block }
-#third { display:none }
-
-/* main[show="first"] > #first{ display: block }
-main[show="second"] > #second{ display: block }
-main[show="third"] > #third{ display: block } */
