@@ -1,4 +1,4 @@
-Scope creep without prioritization - GO BACK 2 PLACES.
+Scope creep without prioritization
 Lack of stakeholder involvement
 Poorly defined user stories
 Inconsistent sprint planning
@@ -48,3 +48,53 @@ Not enough focus on user feedback
 Lack of psychological safety in the team
 Excessive work in progress leading to bottlenecks
 Treating Agile as a checklist rather than a mindset shift
+Clear and well-defined user stories
+Strong stakeholder involvement and feedback
+Regular and productive sprint retrospectives
+Effective backlog grooming and prioritization
+Transparent and open communication among team members
+Consistent and realistic sprint planning
+Well-defined definition of "done"
+High team morale and collaboration
+Automated testing ensuring quality and efficiency
+Smooth and efficient daily stand-ups
+Cross-functional teams working together seamlessly
+Frequent and valuable customer feedback
+Adaptability to changing requirements
+Encouraging innovation and creative problem-solving
+Strong alignment between business and development teams
+Efficient handling of blockers and dependencies
+Predictable and sustainable team velocity
+Empowered and autonomous teams
+Continuous integration and continuous deployment (CI/CD)
+Frequent delivery of working software increments
+Effective knowledge sharing and documentation
+Psychological safety encouraging honest discussions
+Supportive leadership fostering Agile culture
+Balanced workload avoiding team burnout
+Effective use of Agile tools and frameworks
+Proactive risk management and mitigation
+Alignment between UX/UI and development teams
+Regular refactoring to maintain clean code
+Clear and measurable sprint goals
+Healthy work-life balance within the team
+Smooth collaboration with external teams and stakeholders
+Encouraging learning and professional growth
+Frequent celebration of team achievements
+Well-structured pair programming and code reviews
+Efficient resolution of technical debt
+A culture of continuous improvement
+Focusing on delivering value rather than just completing tasks
+Engaged and responsive Product Owner
+Trust and respect within the team
+Strong DevOps and infrastructure support
+Early and frequent testing to catch issues sooner
+Well-facilitated Agile ceremonies
+Data-driven decision-making using Agile metrics
+Clear acceptance criteria for each user story
+Empowering team members to take ownership
+Iterative delivery improving software quality
+Successful adoption of Agile mindset across the organization
+Smooth collaboration with third-party vendors and partners
+Effective stakeholder communication and expectation management
+Encouraging constructive feedback and learning from failures

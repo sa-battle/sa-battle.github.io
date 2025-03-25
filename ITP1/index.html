@@ -16,7 +16,15 @@
                 
                 if (phrases.length > 0) {
                     const randomIndex = Math.floor(Math.random() * phrases.length);
-                    document.getElementById('phrase').innerText = phrases[randomIndex];
+                    if (randomIndex<50) {
+                        let penalty = " – GO BACK "+Math.floor(Math.random() * 6)+" PLACES."
+                        document.getElementById('phrase').innerText = phrases[randomIndex] + penalty;
+                    }
+                    else {
+                        let bonus = " – GO FORWARD "+Math.floor(Math.random() * 6)+" PLACES."
+                        document.getElementById('phrase').innerText = phrases[randomIndex] + bonus;                        
+                    }
+
                 } else {
                     document.getElementById('phrase').innerText = "No phrases found.";
                 }
