@@ -16,12 +16,14 @@
                 
                 if (phrases.length > 0) {
                     const randomIndex = Math.floor(Math.random() * phrases.length);
+                    let move = Math.ceiling(Math.random() * 5);
                     if (randomIndex<50) {
-                        let penalty = " – GO BACK "+(Math.floor(Math.random() * 5)+2)+" PLACES."
+                        
+                        let penalty = " – GO BACK "+move+" PLACE"+(move==1?"":"S");
                         document.getElementById('phrase').innerText = phrases[randomIndex] + penalty;
                     }
                     else {
-                        let bonus = " – GO FORWARD "+(Math.floor(Math.random() * 5)+2)+" PLACES."
+                        let bonus = " – GO FORWARD "+move+" PLACE"+(move==1?"":"S");
                         document.getElementById('phrase').innerText = phrases[randomIndex] + bonus;                        
                     }
 
