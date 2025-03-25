@@ -16,7 +16,7 @@
                 
                 if (phrases.length > 0) {
                     const randomIndex = Math.floor(Math.random() * phrases.length);
-                    let move = Math.ceiling(Math.random() * 5);
+                    let move = Math.ceil(Math.random() * 5);
                     if (randomIndex<50) {
                         
                         let penalty = " – GO BACK "+move+" PLACE"+(move==1?"":"S");
