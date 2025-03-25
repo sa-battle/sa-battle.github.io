@@ -1,0 +1,11 @@
+{
+    "@context": {
+        "schema": "https://schema.org/",
+        "@vocab": "https://example.com/FMH#"
+    },
+    "@type": "schema:Person",
+    "@id": "https://sa-battle.github.io/seb/child.jsonld",
+    "father": "https://sa-battle.github.io/mother.jsonld",
+    "mother": "https://sa-battle.github.io/father.jsonld",
+    "name": "baz"
+}

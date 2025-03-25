@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title>Bike Pump Finder</title>
+    <!-- font links -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+    <!-- icon links -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- W3 CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script>
+        function query() {
+            let url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_transport/MapServer/28/query?where=1%3D1&outFields=NAME,MAINTAINED,TYPE&outSR=4326&f=json"
+            fetch(url, { method: "GET", headers: { Accept: "application/json" } })
+                .then(res => res.json())
+                .then(outputTable);
+        }
+
+        function outputTable(json) {
+            var results = document.getElementById("results");
+            var f = json.features;
+            for (var i = 0; i < f.length; i++) {
+                var tr = document.createElement("tr");
+                results.appendChild(tr);
+                var td = document.createElement("td");
+                tr.appendChild(td);
+                td.innerHTML = json.features[i].attributes.NAME;
+                var td1 = document.createElement("td");
+                tr.appendChild(td1);
+                td1.innerHTML = json.features[i].attributes.MAINTAINED;
+                var td2 = document.createElement("td");
+                tr.appendChild(td2);
+                td2.innerHTML = json.features[i].attributes.TYPE;
+            }
+        }
+    </script>
+</head>
+
+<body id="container">
+    <header>
+        Bike Pump Finder
+        <span id="search">
+            <input stype="text">
+            <i class="material-icons">search</i>
+        </span>
+    </header>
+    <nav>
+        <button onclick="location.href='map.html'" class="w3-button w3-blue w3-block w3-border w3-border-white">Find
+            nearest pump</button>
+        <button class="w3-button w3-blue w3-block w3-border w3-border-white">Find pumps by type</button>
+    </nav>
+    <main>
+        <table>
+            <tbody id="results">
+
+            </tbody>
+        </table>
+    </main>
+    <script>
+        query();
+
+    </script>
+</body>
+
+</html>

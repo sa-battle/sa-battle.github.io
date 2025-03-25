@@ -1,0 +1,50 @@
+Scope creep without prioritization - GO BACK 2 PLACES.
+Lack of stakeholder involvement
+Poorly defined user stories
+Inconsistent sprint planning
+Technical debt accumulation
+Ineffective daily stand-ups
+Team burnout from unrealistic deadlines
+Inadequate testing and QA
+Lack of retrospective improvements
+Misalignment between business and development
+Insufficient backlog grooming
+Developers working in silos
+Lack of clear definition of "done"
+Too many meetings reducing productivity
+Failure to adapt to feedback
+Poor estimation during sprint planning
+Unrealistic velocity expectations
+Inconsistent involvement from the Product Owner
+Dependency on external teams causing delays
+Ignoring technical documentation
+Changing priorities mid-sprint
+Lack of automated testing
+Unclear acceptance criteria
+Poor communication between team members
+Lack of risk management
+Too much focus on speed over quality
+Frequent team member turnover
+Resistance to Agile methodologies
+No alignment between UX/UI and development
+Micromanagement disrupting team autonomy
+Failure to deliver working increments each sprint
+Ignoring technical spikes
+Underestimating infrastructure and DevOps needs
+No time allocated for refactoring
+Ignoring security requirements
+Not tracking and addressing blockers effectively
+Unrealistic customer expectations
+Lack of executive buy-in for Agile practices
+Over-reliance on a single team member
+Ineffective sprint retrospectives
+Failure to celebrate small wins
+Unstructured knowledge sharing
+Poor integration with other Agile teams
+Inconsistent use of Agile tools and frameworks
+Delayed decision-making slowing progress
+Inflexible release schedules not matching Agile principles
+Not enough focus on user feedback
+Lack of psychological safety in the team
+Excessive work in progress leading to bottlenecks
+Treating Agile as a checklist rather than a mindset shift
