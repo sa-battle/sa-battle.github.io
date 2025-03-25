@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Phrase Selector</title>
+</head>
+<body>
+    <p id="phrase"></p>
+    <script>
+        async function getRandomPhrase() {
+            try {
+                const response = await fetch('phrases.txt'); // Load phrases from file
+                const text = await response.text();
+                const phrases = text.split('\n').filter(line => line.trim() !== '');
+                
+                if (phrases.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * phrases.length);
+                    document.getElementById('phrase').innerText = phrases[randomIndex];
+                } else {
+                    document.getElementById('phrase').innerText = "No phrases found.";
+                }
+            } catch (error) {
+                console.error("Error loading phrases:", error);
+                document.getElementById('phrase').innerText = "Error loading phrases.";
+            }
+        }
+        getRandomPhrase()
+    </script>
+</body>
+</html>
