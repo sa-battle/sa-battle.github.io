@@ -1,6 +1,6 @@
 # Bike Pump Finder
 
-TODO: Brief outline of your project describing the dataset and a link to it.
+This app allows people to find bike pumps.
 
 1. [Planning](docs/planning1.md)
 2. [Requirements](docs/requirements.md)
